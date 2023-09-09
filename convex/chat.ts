@@ -1,11 +1,10 @@
-// Import necessary modules
-import Replicate from 'replicate';
-import {  internalAction, mutation } from './_generated/server';
-import { internal } from './_generated/api';
 
-// Define the action
+import Replicate from 'replicate';
+import {  action, internalAction, mutation } from './_generated/server';
+import { api, internal } from './_generated/api';
+
 export const runLlama2 = internalAction({
-  handler: async ({},{prompt}) => {
+  handler: async (ctx,{prompt}) => {
     // Initialize Replicate with your API token
     const replicate = new Replicate({
       auth: 'r8_L2I3XBJhKWwIM55dpotP54dQKyLOsNw0B1peC',
@@ -22,23 +21,21 @@ export const runLlama2 = internalAction({
         }
       );
 
-     // Log the output to the console
      console.log('Llama 2 output:', output);
 
-      // Return a success message
-
-      return output;
+     const result = await ctx.runMutation(api.output.insertOutput, {
+      output,
+    });
+    console.log(result)
+    return 'Llama 2 executed successfully, and output inserted into the table.';
       
-
     } catch (error) {
-      // Handle any errors
       console.error('Error running Llama 2:', error);
       throw new Error('Failed to run Llama 2');
     }
-    
   },
-  
 });
+
 
 
 

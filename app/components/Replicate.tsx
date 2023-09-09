@@ -14,7 +14,7 @@ type Inputs = {
 
 export default function ReplicateForm() {
   const savePrompts = useMutation(api.prompts.savePrompt);
-  // const LlamaData = useQuery(api.prompts.savePrompt);
+  const replyList = useQuery(api.output.getReply);
 
   const [data, setData] = useState([]);
   const {
@@ -22,7 +22,7 @@ export default function ReplicateForm() {
     handleSubmit,
     formState: { errors },
   } = useForm<Inputs>();
-
+  console.log(replyList);
   return (
     <div className="container max-w-2xl mx-auto p-5">
       <Head>
@@ -41,6 +41,11 @@ export default function ReplicateForm() {
         <input {...register('prompt', { required: true })} />
         <input type="submit" />
       </form>
+      {replyList?.map((todo) => (
+        <div key={todo._id}>
+          <div>{todo.output}</div>
+        </div>
+      ))}
     </div>
   );
 }

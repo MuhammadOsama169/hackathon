@@ -16,6 +16,7 @@ import type {
 } from "convex/server";
 import type * as chat from "../chat";
 import type * as generate from "../generate";
+import type * as output from "../output";
 import type * as prompts from "../prompts";
 
 /**
@@ -29,6 +30,7 @@ import type * as prompts from "../prompts";
 declare const fullApi: ApiFromModules<{
   chat: typeof chat;
   generate: typeof generate;
+  output: typeof output;
   prompts: typeof prompts;
 }>;
 export declare const api: FilterApi<
