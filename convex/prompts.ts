@@ -9,7 +9,10 @@ export const savePrompt = mutation(
             prompt
         })
 
-        await scheduler.runAfter(0, internal.chat.runLlama2,{
+        // await scheduler.runAfter(0, internal.chat.runLlama2,{
+        //     prompt
+        // })
+        await scheduler.runAfter(0, internal.dalle.dalle,{
             prompt
         })
 
