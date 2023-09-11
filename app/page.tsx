@@ -1,25 +1,37 @@
-import Line from '../public/llline.svg';
-import Image from 'next/image';
+import { Choices } from './components/Choices';
 import ReplicateForm from './components/Replicate';
+import Image from 'next/image';
+import line3 from '../public/Group 2172.png';
+import line from '../public/ezgif.com-crop.webp';
+import { TableLogs } from './components/Table';
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center md:mt-10 mt-20 md:px-0 px-10">
-      <div className="font-sans lg:text-6xl text-5xl font-bold tracking-wider text-center text-transparent bg-clip-text bg-gradient-to-r from-gray-600 to-gray-400">
-        <h1 className="font-sans lg:text-6xl text-5xl font-bold tracking-wider text-center text-transparent bg-clip-text bg-gradient-to-r from-gray-600 to-gray-400">
-          Discover the World
-        </h1>
-        {/* <Image
-          src={Line}
-          alt="line"
-          className="md:absolute lg:flex h-[250px] md:left-[692px] md:top-[100px] left-[50px] top-[223px] hidden"
-        /> */}
-        <p className="mt-10 md:text-xl text-lg relative text-center">
-          Unlock a World of Inspiration with Handcrafted Destination Guides by
-          Your Favorite Creators
-        </p>
+    <main className="flex justify-center mx-auto">
+      <div className="absolute mt-5">
+        <Image
+          src={line3}
+          alt="Card Image"
+          width={0}
+          height={0}
+          sizes="100vw"
+          className="w-full h-full object-cover "
+        />
       </div>
-      <ReplicateForm />
+      <div className="absolute top-[317px] left-[462px] ">
+        <Image
+          src={line}
+          alt="Card Image"
+          width={0}
+          height={0}
+          sizes="100vw"
+          className="w-[40vw] h-full object-cover "
+        />
+      </div>
+      <TableLogs />
+      <main className="flex min-h-screen flex-col items-center md:mt-10 mt-20 md:px-0 px-10">
+        {/* <ReplicateForm /> */}
+      </main>
     </main>
   );
 }
