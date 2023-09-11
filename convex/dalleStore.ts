@@ -12,14 +12,9 @@ export const insertOutput = mutation({
     },
   });
 
-//   export const getDalle = query(async (ctx) => {
-//     const messages = await ctx.db.query("messages").collect();
-//     for (const message of messages) {
-//       if (message.format === "dall-e") {
-//             // Replace the storage ID with a URL in the "body"
-//         message.body = await ctx.storage.getUrl(message.body);
-//       }
-//     }
-//     return messages;
-//   });
+  export const getDallE = query({
+    handler:async (ctx)=>{
+        return ctx.db.query('dalleImg').collect()
+    }
+})
   

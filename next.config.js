@@ -14,6 +14,10 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'oaidalleapiprodscus.blob.core.windows.net',
       },
+      {
+        protocol: 'https',
+        hostname: 'res.cloudinary.com',
+      },
     ],
     domains: ['img.clerk.com'], // Add the domain(s) of your image sources here
   },
