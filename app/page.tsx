@@ -1,9 +1,8 @@
-import { Choices } from './components/Choices';
-import ReplicateForm from './components/Replicate';
 import Image from 'next/image';
 import line3 from '../public/Group 2172.png';
 import line from '../public/ezgif.com-crop.webp';
 import { TableLogs } from './components/Table';
+import Link from 'next/link';
 
 export default function Home() {
   return (
@@ -28,10 +27,18 @@ export default function Home() {
           className="w-[40vw] h-full object-cover "
         />
       </div>
-      <TableLogs />
-      <main className="flex min-h-screen flex-col items-center md:mt-10 mt-20 md:px-0 px-10">
-        {/* <ReplicateForm /> */}
-      </main>
+      <section className="flex flex-col">
+        <TableLogs />
+        <div className=" text-white z-50 top-[560px] relative gap-5">
+          <Link href={'/change'}>
+            <button className="px-4 py-2 bg-[#e3411d] text-white rounded hover:bg-[#ffaa88] focus:outline-none focus:ring-2 focus:ring-[#ffaa88]">
+              Create Your Own Story
+            </button>
+          </Link>
+        </div>
+      </section>
+
+      <main className="flex min-h-screen flex-col items-center md:mt-10 mt-20 md:px-0 px-10"></main>
     </main>
   );
 }
