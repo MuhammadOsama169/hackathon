@@ -1,6 +1,5 @@
-'use client';
 import Image from 'next/image';
-import React, { useState } from 'react';
+import React from 'react';
 
 interface EventInput {
   id: string;
@@ -10,19 +9,11 @@ interface EventInput {
 }
 
 export const SkeletonEvent = ({ scenario }: EventInput[]) => {
-  const [isSelected, setIsSelected] = useState(false);
-
-  const toggleSelection = () => {
-    setIsSelected(!isSelected);
-  };
-
   return (
     <main>
       <section
-        className={`cursor-pointer flex flex-col rounded-xl text-center justify-center border p-4 hover:scale-[0.98] ${
-          isSelected ? 'border-green-500 shadow-md' : 'border-gray-300'
-        }`}
-        onClick={toggleSelection}
+        className="cursor-pointer flex flex-col rounded-xl text-center justify-center border p-4 hover:scale-[0.98]
+           border-gray-300"
       >
         <div className="h-[300px] w-[300px] mx-auto flex justify-center mb-10">
           <Image

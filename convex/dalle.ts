@@ -1,7 +1,7 @@
 "use node";
-import Replicate from 'replicate';
-import { action, internalAction, mutation } from './_generated/server';
-import { api, internal } from './_generated/api';
+
+import {  internalAction } from './_generated/server';
+import { api } from './_generated/api';
 
 import OpenAI from 'openai';
 
@@ -12,7 +12,7 @@ const openai = new OpenAI({
 export const dalle = internalAction({
   handler: async (ctx, { prompt }: { prompt: string }) => {
 
-    let image_url; // Declare the image_url variable
+    let image_url; 
 
     try {
       const response = await openai.images.generate({
@@ -21,7 +21,6 @@ export const dalle = internalAction({
         size: "1024x1024",
       });
 
-      // Check the response structure and access the data accordingly
       if (response && response.data && response.data[0] && response.data[0].url) {
         image_url = response.data[0].url;
         console.log('Image URL:', image_url);

@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import line3 from '../public/Group 2172.png';
+import background from '../public/background.png';
 import line from '../public/ezgif.com-crop.webp';
 import { TableLogs } from './components/Table';
 import Link from 'next/link';
@@ -9,7 +9,7 @@ export default function Home() {
     <main className="flex justify-center mx-auto">
       <div className="absolute mt-5">
         <Image
-          src={line3}
+          src={background}
           alt="Card Image"
           width={0}
           height={0}
