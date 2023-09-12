@@ -17,7 +17,6 @@ import type {
 import type * as chat from "../chat";
 import type * as dalle from "../dalle";
 import type * as dalleStore from "../dalleStore";
-import type * as generate from "../generate";
 import type * as output from "../output";
 import type * as prompts from "../prompts";
 
@@ -33,7 +32,6 @@ declare const fullApi: ApiFromModules<{
   chat: typeof chat;
   dalle: typeof dalle;
   dalleStore: typeof dalleStore;
-  generate: typeof generate;
   output: typeof output;
   prompts: typeof prompts;
 }>;

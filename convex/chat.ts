@@ -1,37 +1,38 @@
 
-import Replicate from 'replicate';
-import {  action, internalAction, mutation } from './_generated/server';
-import { api, internal } from './_generated/api';
+import {   internalAction } from './_generated/server';
+import { api } from './_generated/api';
+import OpenAI from "openai";
+
+const openai = new OpenAI({
+  apiKey: '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',
+});
 
 export const runLlama2 = internalAction({
-  handler: async (ctx,{prompt}) => {
-    // Initialize Replicate with your API token
-    const replicate = new Replicate({
-      auth: 'r8_L2I3XBJhKWwIM55dpotP54dQKyLOsNw0B1peC',
-    });
-
+  handler: async (ctx, { prompt }) => {
     try {
-      // Run Llama 2 with Replicate
-      const output = await replicate.run(
-        'meta/llama-2-70b-chat:2c1608e18606fad2812020dc541930f2d0495ce32eee50074220b87300bc16e1',
-        {
-          input: {
-            prompt:prompt,
-          },
-        }
-      );
 
-     console.log('Llama 2 output:', output);
+      const response = await openai.chat.completions.create({
+        messages: [
+          { role: "system", content: "You are a helpful assistant." },
+          { role: "user", content: prompt as string },
+        ],
+        model: "gpt-3.5-turbo",
+      });
 
-     const result = await ctx.runMutation(api.output.insertOutput, {
-      output,
-    });
-    console.log(result)
-    return 'Llama 2 executed successfully, and output inserted into the table.';
-      
+      const output = response.choices[0]?.message?.content;
+
+      console.log('ChatGPT output:', output);
+
+      const result = await ctx.runMutation(api.output.insertOutput, {
+        output,
+      });
+
+      console.log(result);
+
+      return 'ChatGPT executed successfully, and output inserted into the table.';
     } catch (error) {
-      console.error('Error running Llama 2:', error);
-      throw new Error('Failed to run Llama 2');
+      console.error('Error running ChatGPT:', error);
+      throw new Error('Failed to run ChatGPT');
     }
   },
 });
