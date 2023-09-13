@@ -1,8 +1,8 @@
 'use client';
 import { useState, useEffect } from 'react';
-import Head from 'next/head';
+import { useToast } from '@/components/ui/use-toast';
 import Image from 'next/image';
-import { useForm, SubmitHandler } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { useMutation, useQuery } from 'convex/react';
 import { api } from '@/convex/_generated/api';
 import { Textarea } from '@/components/ui/textarea';
@@ -16,6 +16,7 @@ export default function ReplicateForm() {
   const replyList: any = useQuery(api.output.getReply);
   const replyDallE: any = useQuery(api.dalleStore.getDallE);
   const [src, setSrc] = useState([]);
+  const { toast } = useToast();
 
   useEffect(() => {
     if (replyDallE) {
@@ -32,16 +33,10 @@ export default function ReplicateForm() {
 
   return (
     <div className="container max-w-[1080px] mx-auto p-5">
-      <h1 className="text-4xl text-[#e3cf1d] font-bold text-center mb-5">
-        Example Results & Suggestions...
-      </h1>
-      <p className="text-md text-[#e3cf1d] font-bold text-center mb-5">
-        Enter A Scenario And We Will Generate Your Story And Image
-      </p>
-
       <form
         onSubmit={handleSubmit((formData) => {
-          savePrompts(formData);
+          // savePrompts(formData);
+          console.log(formData);
         })}
       >
         <Textarea
@@ -53,11 +48,18 @@ export default function ReplicateForm() {
           type="submit"
           className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 cursor-pointer"
           value="Submit"
+          onClick={() => {
+            toast({
+              variant: 'destructive',
+              title: 'AI Is Generating....',
+              description: 'Adding Finishing Touches!',
+            });
+          }}
         />
       </form>
 
       <div className="border rounded-lg p-4  mx-auto mt-4">
-        {replyList?.map((todo) => (
+        {replyList?.map((todo: any) => (
           <div key={todo._id} className="mb-2">
             <div className="p-2 flex gap-2 rounded-lg">
               <Image src={logo} alt="logo" className="w-auto h-[50px] " />
@@ -67,7 +69,7 @@ export default function ReplicateForm() {
         ))}
       </div>
 
-      {src?.map((image) => (
+      {src?.map((image: any) => (
         <div key={image?.id} className="w-200 h-100 border">
           <section className="cursor-pointer flex flex-col rounded-xl text-center justify-center p-4 hover:scale-[0.98] border-gray-300">
             <div className="h-auto mx-auto flex justify-center mb-10">

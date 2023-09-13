@@ -1,20 +1,14 @@
 import {  mutation } from "./_generated/server";
 import { internal } from "./_generated/api";
 
-export const savePrompt = mutation(
+export const dndPrompt = mutation(
     
     async ({db,scheduler},{prompt}:{prompt:string})=>{
 
-        await db.insert('prompts',{
+        await db.insert('dndPrompts',{
             prompt
         })
 
-        await scheduler.runAfter(0, internal.chat.runLlama2,{
-            prompt
-        })
-        await scheduler.runAfter(0, internal.dalle.dalle,{
-            prompt
-        })
 
         return {
             message:'success'

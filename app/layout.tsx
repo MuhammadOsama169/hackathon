@@ -5,6 +5,7 @@ import { ClerkProvider } from '@clerk/nextjs';
 
 import ConvexClientProvider from './ConvexClientProvider';
 import { Navbar } from './components/layout/Navbar';
+import { Toaster } from '@/components/ui/toaster';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -25,6 +26,7 @@ export default function RootLayout({
           <ConvexClientProvider>
             <Navbar />
             {children}
+            <Toaster />
           </ConvexClientProvider>
         </body>
       </html>

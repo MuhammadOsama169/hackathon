@@ -24,6 +24,7 @@ export const Navbar = () => {
           <Link href={'/'}>
             <Image src={logo} alt="logo" className="w-auto h-[50px] " />
           </Link>
+          <h1>Time Variance Authority </h1>
         </div>
 
         <div className="sm:flex hidden">
