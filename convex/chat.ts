@@ -13,7 +13,7 @@ export const runLlama2 = internalAction({
 
       const response = await openai.chat.completions.create({
         messages: [
-          { role: "system", content: "You are a helpful assistant." },
+          { role: "system", content: "You are a bot in a group chat responding to questions with 2-sentence answers." },
           { role: "user", content: prompt as string },
         ],
         model: "gpt-3.5-turbo",

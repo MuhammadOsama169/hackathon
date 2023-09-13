@@ -7,7 +7,7 @@ import Link from 'next/link';
 export default function Home() {
   return (
     <main className="flex justify-center mx-auto">
-      <div className="absolute mt-5">
+      <div className="absolute mt-2">
         <Image
           src={background}
           alt="Card Image"
@@ -29,10 +29,15 @@ export default function Home() {
       </div>
       <section className="flex flex-col">
         <TableLogs />
-        <div className=" text-white z-50 top-[560px] relative gap-5">
+        <div className="text-white z-50 top-[560px] relative flex w-full mx-auto justify-between">
           <Link href={'/change'}>
             <button className="px-4 py-2 bg-[#e3411d] text-white rounded hover:bg-[#ffaa88] focus:outline-none focus:ring-2 focus:ring-[#ffaa88]">
               Create Your Own Story
+            </button>
+          </Link>
+          <Link href={'/dnd'}>
+            <button className="px-4 py-2 bg-[#e3411d] text-white rounded hover:bg-[#ffaa88] focus:outline-none focus:ring-2 focus:ring-[#ffaa88]">
+              Hop On New Timeline
             </button>
           </Link>
         </div>

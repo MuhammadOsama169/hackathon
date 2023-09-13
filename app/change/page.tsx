@@ -9,6 +9,9 @@ const Events = () => {
     <main>
       <div className="flex flex-col justify-center mx-auto max-w-[1080px]">
         <ReplicateForm />
+        <h1 className="text-4xl text-[#e3cf1d] font-bold text-center mb-5">
+          Example Results & Suggestions...
+        </h1>
         <section className="grid grid-cols-3 gap-5 ">
           {events.map((scenario) => (
             <div key={scenario.id}>
