@@ -1,5 +1,5 @@
 'use client';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useToast } from '@/components/ui/use-toast';
 import Image from 'next/image';
 import { useForm } from 'react-hook-form';
@@ -7,6 +7,8 @@ import { useMutation, useQuery } from 'convex/react';
 import { api } from '@/convex/_generated/api';
 import { Textarea } from '@/components/ui/textarea';
 import logo from '../../public/logo.png';
+import { speak } from './speechUtils'; // Import the speech utility function
+
 type Inputs = {
   prompt: string;
 };
@@ -16,6 +18,7 @@ export default function ReplicateForm() {
   const replyList: any = useQuery(api.output.getReply);
   const replyDallE: any = useQuery(api.dalleStore.getDallE);
   const [src, setSrc] = useState([]);
+  const [data, setData] = useState('');
   const { toast } = useToast();
 
   useEffect(() => {
@@ -25,18 +28,44 @@ export default function ReplicateForm() {
     }
   }, [replyDallE]);
 
+  const prevReply = useRef(null);
+
+  useEffect(() => {
+    // Check if replyList is defined and not empty
+    if (replyList?.length > 0) {
+      const newestReply = replyList.slice(-1)[0];
+
+      // Check if newestReply is defined and different from the previous one
+      if (newestReply && newestReply.output !== prevReply.current) {
+        prevReply.current = newestReply.output;
+        speak(newestReply.output);
+      }
+    }
+  }, [replyList]);
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<Inputs>();
 
+  const { prompt } = data;
+
+  // if (
+  //   typeof prompt === 'string' &&
+  //   prompt.includes('shoe' || 'card' || 'name')
+  // ) {
+  //   console.log(`The prompt contains "shoe": ${prompt}`);
+  // } else {
+  //   console.log(`The prompt does not contain "Shoe": ${prompt}`);
+  // }
+
   return (
     <div className="container max-w-[1080px] mx-auto p-5">
       <form
         onSubmit={handleSubmit((formData) => {
-          // savePrompts(formData);
-          console.log(formData);
+          savePrompts(formData);
+          setData(formData);
         })}
       >
         <Textarea
@@ -50,7 +79,6 @@ export default function ReplicateForm() {
           value="Submit"
           onClick={() => {
             toast({
-              variant: 'destructive',
               title: 'AI Is Generating....',
               description: 'Adding Finishing Touches!',
             });
