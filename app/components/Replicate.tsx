@@ -7,7 +7,8 @@ import { useMutation, useQuery } from 'convex/react';
 import { api } from '@/convex/_generated/api';
 import { Textarea } from '@/components/ui/textarea';
 import logo from '../../public/logo.png';
-import { speak } from './speechUtils'; // Import the speech utility function
+import { speak } from './speechUtils';
+import { Modal } from './Modal';
 
 type Inputs = {
   prompt: string;
@@ -16,55 +17,51 @@ type Inputs = {
 export default function ReplicateForm() {
   const savePrompts = useMutation(api.prompts.savePrompt);
   const replyList: any = useQuery(api.output.getReply);
-  const replyDallE: any = useQuery(api.dalleStore.getDallE);
   const [src, setSrc] = useState([]);
-  const [data, setData] = useState('');
+  const [data, setData] = useState<any>('');
   const { toast } = useToast();
+  const [win, setWin] = useState<boolean>(false);
 
-  useEffect(() => {
-    if (replyDallE) {
-      const imageUrlFromReply = replyDallE;
-      setSrc(imageUrlFromReply);
-    }
-  }, [replyDallE]);
-
+  console.log(data);
+  // Fetch new replies from API
   const prevReply = useRef(null);
-
   useEffect(() => {
-    // Check if replyList is defined and not empty
     if (replyList?.length > 0) {
       const newestReply = replyList.slice(-1)[0];
-
-      // Check if newestReply is defined and different from the previous one
       if (newestReply && newestReply.output !== prevReply.current) {
         prevReply.current = newestReply.output;
         speak(newestReply.output);
       }
     }
   }, [replyList]);
+  // text-speech logic
+  const { prompt } = data;
+  useEffect(() => {
+    if (
+      typeof prompt === 'string' &&
+      (prompt.includes('shoe') ||
+        prompt.includes('card') ||
+        prompt.includes('name'))
+    ) {
+      setWin(true);
+      console.log('win');
+    } else {
+      setWin(false);
+      console.log('loose');
+    }
+  }, [prompt]);
 
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<Inputs>();
-
-  const { prompt } = data;
-
-  // if (
-  //   typeof prompt === 'string' &&
-  //   prompt.includes('shoe' || 'card' || 'name')
-  // ) {
-  //   console.log(`The prompt contains "shoe": ${prompt}`);
-  // } else {
-  //   console.log(`The prompt does not contain "Shoe": ${prompt}`);
-  // }
-
   return (
-    <div className="container max-w-[1080px] mx-auto p-5">
+    <div className="container max-w-[1080px] mx-auto p-5 relative">
+      {win === true && <Modal win={win} setWin={setWin} />}
       <form
         onSubmit={handleSubmit((formData) => {
-          savePrompts(formData);
+          // savePrompts(formData);
           setData(formData);
         })}
       >
@@ -86,7 +83,7 @@ export default function ReplicateForm() {
         />
       </form>
 
-      <div className="border rounded-lg p-4  mx-auto mt-4">
+      <div className="border rounded-lg p-4  mx-auto mt-4 h-[300px] overflow-y-auto">
         {replyList?.map((todo: any) => (
           <div key={todo._id} className="mb-2">
             <div className="p-2 flex gap-2 rounded-lg">
@@ -96,22 +93,6 @@ export default function ReplicateForm() {
           </div>
         ))}
       </div>
-
-      {src?.map((image: any) => (
-        <div key={image?.id} className="w-200 h-100 border">
-          <section className="cursor-pointer flex flex-col rounded-xl text-center justify-center p-4 hover:scale-[0.98] border-gray-300">
-            <div className="h-auto mx-auto flex justify-center mb-10">
-              <Image
-                src={image?.output}
-                width={400}
-                height={100}
-                alt="image"
-                className=""
-              />
-            </div>
-          </section>
-        </div>
-      ))}
     </div>
   );
 }

@@ -3,8 +3,10 @@ import {   internalAction } from './_generated/server';
 import { api } from './_generated/api';
 import OpenAI from "openai";
 
+const apikey = process.env.OPENAI_API_KEY
+
 const openai = new OpenAI({
-  apiKey: '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',
+  apiKey: apikey,
 });
 
 export const runLlama2 = internalAction({
