@@ -19,7 +19,7 @@ const nextConfig = {
         hostname: 'res.cloudinary.com',
       },
     ],
-    domains: ['img.clerk.com'], // Add the domain(s) of your image sources here
+    domains: ['img.clerk.com'],
   },
 };
 

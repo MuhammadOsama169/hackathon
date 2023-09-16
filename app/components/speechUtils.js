@@ -3,6 +3,6 @@ export function speak(text) {
   msg.text = text;
   msg.voice = window.speechSynthesis
     .getVoices()
-    .find((voice) => voice.name === 'Google UK English Female');
+    .find((voice) => voice.name === 'Old Man');
   window.speechSynthesis.speak(msg);
 }
