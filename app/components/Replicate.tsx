@@ -5,10 +5,10 @@ import Image from 'next/image';
 import { useForm } from 'react-hook-form';
 import { useMutation, useQuery } from 'convex/react';
 import { api } from '@/convex/_generated/api';
-import { Textarea } from '@/components/ui/textarea';
-import logo from '../../public/logo.png';
+import IconGPT from '../../public/GPT-logo.jpg';
 import { speak } from './speechUtils';
 import { Modal } from './Modal';
+import { Input } from '@/components/ui/input';
 
 type Inputs = {
   prompt: string;
@@ -57,41 +57,46 @@ export default function ReplicateForm() {
     formState: { errors },
   } = useForm<Inputs>();
   return (
-    <div className="container max-w-[1080px] mx-auto p-5 relative">
+    <div className="container max-w-[1080px] mx-auto relative">
       {win === true && <Modal win={win} setWin={setWin} />}
       <form
         onSubmit={handleSubmit((formData) => {
-          // savePrompts(formData);
+          savePrompts(formData);
           setData(formData);
         })}
       >
-        <Textarea
-          placeholder="Create Your Own Scenario. WHAT IF ..."
-          className="my-5"
-          {...register('prompt', { required: true })}
-        />
-        <input
-          type="submit"
-          className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 cursor-pointer"
-          value="Submit"
-          onClick={() => {
-            toast({
-              title: 'AI Is Generating....',
-              description: 'Adding Finishing Touches!',
-            });
-          }}
-        />
+        <div className="flex justify-center mx-auto ">
+          <Input
+            className="w-full text-lg text-center"
+            placeholder="Hello Detective How May Can I Help You?"
+            {...register('prompt', { required: true })}
+          />
+          <input
+            type="submit"
+            className="px-4 py-2 bg-blue-500 text-white  hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 cursor-pointer"
+            value="Ask"
+            onClick={() => {
+              toast({
+                title: 'AI Is Generating....',
+                description: 'Adding Finishing Touches!',
+              });
+            }}
+          />
+        </div>
       </form>
 
-      <div className="border rounded-lg p-4  mx-auto mt-4 h-[300px] overflow-y-auto">
-        {replyList?.map((todo: any) => (
-          <div key={todo._id} className="mb-2">
-            <div className="p-2 flex gap-2 rounded-lg">
-              <Image src={logo} alt="logo" className="w-auto h-[50px] " />
-              {todo.output}
+      <div className="border rounded-lg p-4 mx-auto h-[228px] overflow-y-auto bg-[#000000]">
+        {replyList
+          ?.slice()
+          .reverse()
+          .map((todo: any) => (
+            <div key={todo._id} className="mb-2">
+              <div className="p-2 flex gap-2 rounded-lg">
+                <Image src={IconGPT} alt="logo" className="w-auto h-[30px]" />
+                {todo.output}
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
       </div>
     </div>
   );
