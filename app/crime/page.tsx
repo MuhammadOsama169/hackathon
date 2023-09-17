@@ -6,7 +6,7 @@ import InnerImageZoom from 'react-inner-image-zoom';
 
 const CrimeScene = () => {
   return (
-    <main className="flex justify-center mx-auto ">
+    <main className="flex justify-center mx-auto h-[100vh]">
       <InnerImageZoom
         src={CrimeBackground.src}
         zoomSrc={CrimeBackground.src}

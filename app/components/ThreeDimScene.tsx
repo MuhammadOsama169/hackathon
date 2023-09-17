@@ -15,6 +15,7 @@ function Model() {
     </group>
   );
 }
+
 export const ThreeDimScene = () => {
   return (
     <>
