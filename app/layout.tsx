@@ -24,7 +24,7 @@ export default function RootLayout({
       <html lang="en">
         <body className={inter.className}>
           <ConvexClientProvider>
-            <Navbar />
+            {/* <Navbar /> */}
             {children}
             <Toaster />
           </ConvexClientProvider>
