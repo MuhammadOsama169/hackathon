@@ -15,10 +15,9 @@ import type {
   FunctionReference,
 } from "convex/server";
 import type * as chat from "../chat";
-import type * as dalle from "../dalle";
-import type * as dalleStore from "../dalleStore";
-import type * as dndprompts from "../dndprompts";
+import type * as chatDoc from "../chatDoc";
 import type * as output from "../output";
+import type * as outputDoc from "../outputDoc";
 import type * as prompts from "../prompts";
 
 /**
@@ -31,10 +30,9 @@ import type * as prompts from "../prompts";
  */
 declare const fullApi: ApiFromModules<{
   chat: typeof chat;
-  dalle: typeof dalle;
-  dalleStore: typeof dalleStore;
-  dndprompts: typeof dndprompts;
+  chatDoc: typeof chatDoc;
   output: typeof output;
+  outputDoc: typeof outputDoc;
   prompts: typeof prompts;
 }>;
 export declare const api: FilterApi<

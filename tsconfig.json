@@ -30,7 +30,7 @@
     "app/api/predictions/route.js",
     "app/api/predictions/route.js",
     "app/api/predictions/[id].js",
-    "app/components/Replicate.tsx"
+    "app/components/Suspect.tsx"
   ],
   "exclude": ["node_modules"]
 }
