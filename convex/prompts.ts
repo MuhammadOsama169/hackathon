@@ -12,9 +12,23 @@ export const savePrompt = mutation(
         await scheduler.runAfter(0, internal.chat.runLlama2,{
             prompt
         })
-        // await scheduler.runAfter(0, internal.dalle.dalle,{
-        //     prompt
-        // })
+
+        return {
+            message:'success'
+        }
+    }
+)
+export const savePromptDoc = mutation(
+    
+    async ({db,scheduler},{prompt}:{prompt:string})=>{
+
+        await db.insert('docBot',{
+            prompt
+        })
+
+        await scheduler.runAfter(0, internal.chatDoc.runDoc,{
+            prompt
+        })
 
         return {
             message:'success'
