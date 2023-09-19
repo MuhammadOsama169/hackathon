@@ -1,9 +1,23 @@
+'use client';
 import React from 'react';
 import Link from 'next/link';
+import { UserButton, useAuth, useUser } from '@clerk/nextjs';
 
 export const Navbar = () => {
+  const { sessionId: session } = useAuth();
   return (
     <nav className="absolute z-50 m-10">
+      <div className="sm:flex hidden">
+        {session ? (
+          <div className="flex items-center ml-1 my-2">
+            <UserButton afterSignOutUrl="/" />
+          </div>
+        ) : (
+          <nav className="flex gap-5 my-5">
+            <Link href={'/api/auth/sign-in'}>Sign In</Link>
+          </nav>
+        )}
+      </div>
       <Link href={'/'} className="hover:scale-[0.8]">
         <svg
           xmlns="http://www.w3.org/2000/svg"
