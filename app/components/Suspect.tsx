@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { useForm } from 'react-hook-form';
 import { useMutation, useQuery } from 'convex/react';
 import { api } from '@/convex/_generated/api';
-import IconGPT from '../../public/GPT-logo.jpg';
+import iconGPT from '../../public/ai-logo.jpg';
 import { speakMale } from './speechUtils';
 import { Modal } from './Modal';
 import { Input } from '@/components/ui/input';
@@ -90,7 +90,7 @@ export default function SuspectForm() {
           .map((todo: any) => (
             <div key={todo._id} className="mb-2">
               <div className="p-2 flex gap-2 rounded-lg">
-                <Image src={IconGPT} alt="logo" className="w-auto h-[30px]" />
+                <Image src={iconGPT} alt="logo" className="w-auto h-[30px]" />
                 {todo.output}
               </div>
             </div>
