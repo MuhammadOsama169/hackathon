@@ -23,7 +23,7 @@ export const Modal = ({
           play
           className="w-full h-[200px] z-100"
         />
-        <h2 className="text-2xl font-semibold mb-4">
+        <h2 className="text-2xl font-semibold mb-4 text-center">
           Congratulations You Won!
         </h2>
         <div className="flex justify-center mx-auto">
@@ -31,7 +31,7 @@ export const Modal = ({
             className="px-4 py-2 bg-[#e3411d] text-white rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400"
             onClick={handleModal}
           >
-            Keep Playing
+            Continue Questioning
           </button>
         </div>
       </div>

@@ -17,10 +17,10 @@ type Inputs = {
 export default function SuspectForm() {
   const savePrompts = useMutation(api.prompts.savePrompt);
   const replyList: any = useQuery(api.output.getReply);
-  const [src, setSrc] = useState([]);
   const [data, setData] = useState<any>('');
   const { toast } = useToast();
   const [win, setWin] = useState<boolean>(false);
+  const [feel, setFeel] = useState(0);
 
   // Fetch new replies from API
   const prevReply = useRef(null);
@@ -43,10 +43,9 @@ export default function SuspectForm() {
         prompt.includes('DNA'))
     ) {
       setWin(true);
-      console.log('win');
+      setFeel(feel + 1);
     } else {
       setWin(false);
-      console.log('loose');
     }
   }, [prompt]);
 
@@ -76,8 +75,8 @@ export default function SuspectForm() {
             value="Ask"
             onClick={() => {
               toast({
-                title: 'AI Is Generating....',
-                description: 'Adding Finishing Touches!',
+                title: 'Suspect is thinking....',
+                description: 'He looks around and starts to get nervous',
               });
             }}
           />
@@ -96,6 +95,19 @@ export default function SuspectForm() {
               </div>
             </div>
           ))}
+      </div>
+      <div className="absolute top-[-462px] z-50 left-[800px] flex ">
+        <h1>
+          Suspect is feeling:
+          <span
+            className={`${
+              feel > 0 ? 'text-red-600' : 'text-blue-600'
+            } font-bold`}
+          >
+            {feel > 0 && <h1>Aggressive 😡</h1>}
+            {feel === 0 && <h1>Nervous 😰</h1>}
+          </span>
+        </h1>
       </div>
     </div>
   );
