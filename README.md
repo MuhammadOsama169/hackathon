@@ -1,34 +1,48 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+🎴🤖AI Muder Mystery🤖🎴
 
-First, run the development server:
+A 3D game where you are a detective trying to catch an AI droid who has committed murder. Here you can ask questions to Connor the droid and make him confess his crimes!.
+The 3D envoirnment and AI's ability to speak and asnwer your questions makes this project a fun unique and quite interactive experience. 
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+## Demo 💻
+
+https://hackathon-9z4tif1zw-muhammadosama169.vercel.app/
+
+
+## Features
+
+This game is made with convex as a backend, Next js as frontend and three js for 3D model/envoirnments.
+
+
+## 🌠 About Me
+I'm a full stack developer looking for new oppertunities and teams to work with!. Check out my portfolio website:
+https://portfolio-muhammadosama.netlify.app//
+
+
+## Have a Question❓
+The Medical Examinar AI in the Hospital has a male voice in the start but if you visit the hospital and come back again it should fix its voice!
+If you have a question, feel free raise an issue in repo or ask me here: https://www.linkedin.com/in/muhammad-osama-688123162/ 
+
+## Leave a star !! ⭐
+Leave a github star if you found this repo useful. This helps in increasing the visibility of this repo and others finding it too.
+
+## 📫 How to reach me
+https://www.linkedin.com/in/muhammad-osama-688123162/
+
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
+## Usage/Examples
+
+```javascript
+yarn run dev
+npx convex dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🔗 Links
+[![portfolio](https://img.shields.io/badge/my_portfolio-000?style=for-the-badge&logo=ko-fi&logoColor=white)](https://portfolio-muhammadosama.netlify.app//)
+[![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/muhammad-osama-688123162/)
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
